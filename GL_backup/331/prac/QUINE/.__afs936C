@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+using namespace std;
+
+int main(int argc, char* argv[])
+{
+
+    int bstop = 0;
+    string l[] = {
+      "#include <iostream>",
+      "#include <string>",
+      "#include <fstream>",
+      "using namespace std;",
+      "",
+      "int main(int argc, char* argv[])",
+      "{",
+      "",
+      "    int bstop = 0;",
+      "    string l[] = {",
+      "    };",
+      "    ofstream outFile("newQuine.cpp"); ",
+      "     for(int i = 0; i <= bstop; i++)",
+      "       outFile << l[i] << endl;",
+      "    outFile.close();",
+      "    return 0;"
+      "}"    };
+    ofstream outFile("newQuine.cpp"); 
+     for(int i = 0; i <= bstop; i++)
+       outFile << l[i] << endl;
+    outFile.close();
+    return 0;
+}

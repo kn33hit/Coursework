@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+
+<p id="demo"></p>
+
+<script>
+// Thank you http://www.math.wustl.edu/~victor/mfmm/compaa/gcd.c
+
+function gcd(a, b) {
+  var c;
+  while ( a != 0 ) {
+     c = a; a = b%a;  b = c;
+  }
+  return b;
+}
+document.getElementById("demo").innerHTML = gcd(4, 2);
+console.log(gcd(12,13));
+console.log(gcd(9,3));
+
+</script>
+
+</body>
+</html>

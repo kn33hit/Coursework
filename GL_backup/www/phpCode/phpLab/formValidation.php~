@@ -1,0 +1,11 @@
+<?php 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $license = test_input($_POST["name"]);
+  $date = test_input($_POST["dob"]);
+  $auditNumber = test_input($_POST["audit"]);
+  $social = test_input($_POST["ss"]);
+  
+}
+
+
+?>

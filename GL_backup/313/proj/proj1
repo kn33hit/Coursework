@@ -1,0 +1,622 @@
+Script started on Mon 22 Sep 2014 07:46:05 PM EDT
+/afs/umbc.edu/common/etc/python33.cshrc: No such file or directory.
+linux2[1]% prok[Kj1[K[K[K[K[K./proj1
+Enter ISBN number: 
+3201541974
+This is a valid ISBN number 
+linux2[2]% ./proj1
+Enter ISBN number: 
+0457773706
+This is NOT a valid ISBN number
+linux2[3]% ./proj1[12G[Kgdb proj1
+[?1034hGNU gdb (GDB) Red Hat Enterprise Linux (7.2-64.el6_5.2)
+Copyright (C) 2010 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-redhat-linux-gnu".
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>...
+Reading symbols from /afs/umbc.edu/users/n/p/npatel10/home/313/proj/proj1...done.
+(gdb) break *_start
+Breakpoint 1 at 0x8048080: file proj1.asm, line 26.
+(gdb) run
+Starting program: /afs/umbc.edu/users/n/p/npatel10/home/313/proj/proj1 
+/afs/umbc.edu/common/etc/python33.cshrc: No such file or directory.
+
+Breakpoint 1, _start () at proj1.asm:26
+26	_start:	nop
+(gdb) b[Kstep
+30		mov eax,4 		;always 4, register 1
+(gdb) 
+31		mov ebx,1		;always 1, register 2
+(gdb) 
+32		mov ecx,msg1		;register 3 message output
+(gdb) 
+33		mov edx,len1		;length of message 
+(gdb) 
+34		int 080h 		;sending it to kernel
+(gdb) 
+Enter ISBN number: 
+37		mov eax,3		;always 3 for input
+(gdb) 
+38		mov ebx,0		;always 0 for input
+(gdb) 
+39		mov ecx, buffer		;the input 
+(gdb) 
+40		mov edx, bufflen	;the length of input 
+(gdb) 
+41		int 080h		;to kernel
+(gdb) break
+Breakpoint 2 at 0x80480ab: file proj1.asm, line 41.
+(gdb) info registers
+eax            0x3	3
+ecx            0x804918c	134517132
+edx            0x14	20
+ebx            0x0	0
+esp            0xffffd340	0xffffd340
+ebp            0x0	0x0
+esi            0x0	0
+edi            0x0	0
+eip            0x80480ab	0x80480ab <start+42>
+eflags         0x202	[ IF ]
+cs             0x23	35
+ss             0x2b	43
+ds             0x2b	43
+es             0x2b	43
+fs             0x0	0
+gs             0x0	0
+(gdb) step
+1234567890
+45		xor eax, eax		;clearig registers!!
+(gdb) 
+46		xor ebx, ebx
+(gdb) 
+47		xor edx, edx
+(gdb) 
+48		xor ecx, ecx
+(gdb) info registers
+eax            0x0	0
+ecx            0x804918c	134517132
+edx            0x0	0
+ebx            0x0	0
+esp            0xffffd340	0xffffd340
+ebp            0x0	0x0
+esi            0x0	0
+edi            0x0	0
+eip            0x80480b3	0x80480b3 <start+50>
+eflags         0x246	[ PF ZF IF ]
+cs             0x23	35
+ss             0x2b	43
+ds             0x2b	43
+es             0x2b	43
+fs             0x0	0
+gs             0x0	0
+(gdb) break
+Breakpoint 3 at 0x80480b3: file proj1.asm, line 48.
+(gdb) 
+Note: breakpoint 3 also set at pc 0x80480b3.
+Breakpoint 4 at 0x80480b3: file proj1.asm, line 48.
+(gdb) step
+50		mov cl, 0		;sub,add,cmp had byte for calculations
+(gdb) 
+51	 	mov esi, buffer			;intiaiting the for loop
+(gdb) 
+53		mov al,[esi]		;moving buffer to a register
+(gdb) 
+54		sub al,'0'		;changing the asscii cahracter to an int
+(gdb) 
+55		add bl,al		;adding t4 and al(certain int in the number)
+(gdb) 
+56		cmp bl,11		;comparing with 11 if more than subtract
+(gdb) 
+57		jge sub1		;if condition is not satisfied jump to sub1
+(gdb) 
+59		add dl,bl		;add the sum with t4
+(gdb) 
+60		cmp dl,11		;compare if the sum is over 11 if yes than sub2
+(gdb) 
+61		jge sub2
+(gdb) 
+64		add esi, 1
+(gdb) 
+65		inc cl			;incrementing the for loop (cl)
+(gdb) 
+66		cmp cl,10		;condition for the loop 
+(gdb) 
+67		jb loop 		;jump back to the loop 
+(gdb) 
+53		mov al,[esi]		;moving buffer to a register
+(gdb) break
+Breakpoint 5 at 0x80480bc: file proj1.asm, line 53.
+(gdb) step
+54		sub al,'0'		;changing the asscii cahracter to an int
+(gdb) 
+55		add bl,al		;adding t4 and al(certain int in the number)
+(gdb) 
+56		cmp bl,11		;comparing with 11 if more than subtract
+(gdb) 
+57		jge sub1		;if condition is not satisfied jump to sub1
+(gdb) 
+59		add dl,bl		;add the sum with t4
+(gdb) 
+60		cmp dl,11		;compare if the sum is over 11 if yes than sub2
+(gdb) 
+61		jge sub2
+(gdb) 
+64		add esi, 1
+(gdb) 
+65		inc cl			;incrementing the for loop (cl)
+(gdb) 
+66		cmp cl,10		;condition for the loop 
+(gdb) 
+67		jb loop 		;jump back to the loop 
+(gdb) 
+
+Breakpoint 5, loop () at proj1.asm:53
+53		mov al,[esi]		;moving buffer to a register
+(gdb) info registers
+eax            0x2	2
+ecx            0x2	2
+edx            0x4	4
+ebx            0x3	3
+esp            0xffffd340	0xffffd340
+ebp            0x0	0x0
+esi            0x804918e	134517134
+edi            0x0	0
+eip            0x80480bc	0x80480bc <loop>
+eflags         0x293	[ CF AF SF IF ]
+cs             0x23	35
+ss             0x2b	43
+ds             0x2b	43
+es             0x2b	43
+fs             0x0	0
+gs             0x0	0
+(gdb) step
+54		sub al,'0'		;changing the asscii cahracter to an int
+(gdb) 
+55		add bl,al		;adding t4 and al(certain int in the number)
+(gdb) 
+56		cmp bl,11		;comparing with 11 if more than subtract
+(gdb) 
+57		jge sub1		;if condition is not satisfied jump to sub1
+(gdb) 
+59		add dl,bl		;add the sum with t4
+(gdb) 
+60		cmp dl,11		;compare if the sum is over 11 if yes than sub2
+(gdb) 
+61		jge sub2
+(gdb) 
+64		add esi, 1
+(gdb) 
+65		inc cl			;incrementing the for loop (cl)
+(gdb) 
+66		cmp cl,10		;condition for the loop 
+(gdb) 
+67		jb loop 		;jump back to the loop 
+(gdb) 
+
+Breakpoint 5, loop () at proj1.asm:53
+53		mov al,[esi]		;moving buffer to a register
+(gdb) info registers
+eax            0x3	3
+ecx            0x3	3
+edx            0xa	10
+ebx            0x6	6
+esp            0xffffd340	0xffffd340
+ebp            0x0	0x0
+esi            0x804918f	134517135
+edi            0x0	0
+eip            0x80480bc	0x80480bc <loop>
+eflags         0x297	[ CF PF AF SF IF ]
+cs             0x23	35
+ss             0x2b	43
+ds             0x2b	43
+es             0x2b	43
+fs             0x0	0
+gs             0x0	0
+(gdb) step
+54		sub al,'0'		;changing the asscii cahracter to an int
+(gdb) 
+55		add bl,al		;adding t4 and al(certain int in the number)
+(gdb) 
+56		cmp bl,11		;comparing with 11 if more than subtract
+(gdb) 
+57		jge sub1		;if condition is not satisfied jump to sub1
+(gdb) 
+59		add dl,bl		;add the sum with t4
+(gdb) 
+60		cmp dl,11		;compare if the sum is over 11 if yes than sub2
+(gdb) 
+61		jge sub2
+(gdb) 
+100	sub2:	   sub dl,11  	;subtracting 11 by the sum
+(gdb) 
+101		   jmp sub2return  	;jumoing back    
+(gdb) 
+64		add esi, 1
+(gdb) 
+65		inc cl			;incrementing the for loop (cl)
+(gdb) 
+66		cmp cl,10		;condition for the loop 
+(gdb) 
+67		jb loop 		;jump back to the loop 
+(gdb) 
+
+Breakpoint 5, loop () at proj1.asm:53
+53		mov al,[esi]		;moving buffer to a register
+(gdb) info registers
+eax            0x4	4
+ecx            0x4	4
+edx            0x9	9
+ebx            0xa	10
+esp            0xffffd340	0xffffd340
+ebp            0x0	0x0
+esi            0x8049190	134517136
+edi            0x0	0
+eip            0x80480bc	0x80480bc <loop>
+eflags         0x297	[ CF PF AF SF IF ]
+cs             0x23	35
+ss             0x2b	43
+ds             0x2b	43
+es             0x2b	43
+fs             0x0	0
+gs             0x0	0
+(gdb) step
+54		sub al,'0'		;changing the asscii cahracter to an int
+(gdb) 
+55		add bl,al		;adding t4 and al(certain int in the number)
+(gdb) 
+56		cmp bl,11		;comparing with 11 if more than subtract
+(gdb) 
+57		jge sub1		;if condition is not satisfied jump to sub1
+(gdb) 
+97	sub1:	   sub bl,11  	;subtracting bl (t4) by 11
+(gdb) 
+98		   jmp sub1return  	;jump back to the same point in the loop
+(gdb) 
+59		add dl,bl		;add the sum with t4
+(gdb) 
+60		cmp dl,11		;compare if the sum is over 11 if yes than sub2
+(gdb) 
+61		jge sub2
+(gdb) 
+100	sub2:	   sub dl,11  	;subtracting 11 by the sum
+(gdb) 
+101		   jmp sub2return  	;jumoing back    
+(gdb) 
+64		add esi, 1
+(gdb) 
+65		inc cl			;incrementing the for loop (cl)
+(gdb) 
+66		cmp cl,10		;condition for the loop 
+(gdb) 
+67		jb loop 		;jump back to the loop 
+(gdb) 
+
+Breakpoint 5, loop () at proj1.asm:53
+53		mov al,[esi]		;moving buffer to a register
+(gdb) info reigsters 
+Undefined info command: "reigsters ".  Try "help info".
+(gdb) info reigsters [K
+Undefined info command: "reigsters".  Try "help info".
+(gdb) info registes[Kts[K[Krs
+eax            0x5	5
+ecx            0x5	5
+edx            0x2	2
+ebx            0x4	4
+esp            0xffffd340	0xffffd340
+ebp            0x0	0x0
+esi            0x8049191	134517137
+edi            0x0	0
+eip            0x80480bc	0x80480bc <loop>
+eflags         0x293	[ CF AF SF IF ]
+cs             0x23	35
+ss             0x2b	43
+ds             0x2b	43
+es             0x2b	43
+fs             0x0	0
+gs             0x0	0
+(gdb) step
+54		sub al,'0'		;changing the asscii cahracter to an int
+(gdb) 
+55		add bl,al		;adding t4 and al(certain int in the number)
+(gdb) 
+56		cmp bl,11		;comparing with 11 if more than subtract
+(gdb) 
+57		jge sub1		;if condition is not satisfied jump to sub1
+(gdb) 
+59		add dl,bl		;add the sum with t4
+(gdb) 
+60		cmp dl,11		;compare if the sum is over 11 if yes than sub2
+(gdb) 
+61		jge sub2
+(gdb) 
+100	sub2:	   sub dl,11  	;subtracting 11 by the sum
+(gdb) 
+101		   jmp sub2return  	;jumoing back    
+(gdb) 
+64		add esi, 1
+(gdb) 
+65		inc cl			;incrementing the for loop (cl)
+(gdb) 
+66		cmp cl,10		;condition for the loop 
+(gdb) 
+67		jb loop 		;jump back to the loop 
+(gdb) 
+
+Breakpoint 5, loop () at proj1.asm:53
+53		mov al,[esi]		;moving buffer to a register
+(gdb) info registers
+eax            0x6	6
+ecx            0x6	6
+edx            0x1	1
+ebx            0xa	10
+esp            0xffffd340	0xffffd340
+ebp            0x0	0x0
+esi            0x8049192	134517138
+edi            0x0	0
+eip            0x80480bc	0x80480bc <loop>
+eflags         0x297	[ CF PF AF SF IF ]
+cs             0x23	35
+ss             0x2b	43
+ds             0x2b	43
+es             0x2b	43
+fs             0x0	0
+gs             0x0	0
+(gdb) 
+eax            0x6	6
+ecx            0x6	6
+edx            0x1	1
+ebx            0xa	10
+esp            0xffffd340	0xffffd340
+ebp            0x0	0x0
+esi            0x8049192	134517138
+edi            0x0	0
+eip            0x80480bc	0x80480bc <loop>
+eflags         0x297	[ CF PF AF SF IF ]
+cs             0x23	35
+ss             0x2b	43
+ds             0x2b	43
+es             0x2b	43
+fs             0x0	0
+gs             0x0	0
+(gdb) step
+54		sub al,'0'		;changing the asscii cahracter to an int
+(gdb) 
+55		add bl,al		;adding t4 and al(certain int in the number)
+(gdb) 
+56		cmp bl,11		;comparing with 11 if more than subtract
+(gdb) 
+57		jge sub1		;if condition is not satisfied jump to sub1
+(gdb) 
+97	sub1:	   sub bl,11  	;subtracting bl (t4) by 11
+(gdb) 
+98		   jmp sub1return  	;jump back to the same point in the loop
+(gdb) 
+59		add dl,bl		;add the sum with t4
+(gdb) 
+60		cmp dl,11		;compare if the sum is over 11 if yes than sub2
+(gdb) 
+61		jge sub2
+(gdb) 
+64		add esi, 1
+(gdb) 
+65		inc cl			;incrementing the for loop (cl)
+(gdb) 
+66		cmp cl,10		;condition for the loop 
+(gdb) 
+67		jb loop 		;jump back to the loop 
+(gdb) 
+
+Breakpoint 5, loop () at proj1.asm:53
+53		mov al,[esi]		;moving buffer to a register
+(gdb) ind[Kfo registers
+eax            0x7	7
+ecx            0x7	7
+edx            0x7	7
+ebx            0x6	6
+esp            0xffffd340	0xffffd340
+ebp            0x0	0x0
+esi            0x8049193	134517139
+edi            0x0	0
+eip            0x80480bc	0x80480bc <loop>
+eflags         0x293	[ CF AF SF IF ]
+cs             0x23	35
+ss             0x2b	43
+ds             0x2b	43
+es             0x2b	43
+fs             0x0	0
+gs             0x0	0
+(gdb) dste[K[K[K[Kstep
+54		sub al,'0'		;changing the asscii cahracter to an int
+(gdb) 
+55		add bl,al		;adding t4 and al(certain int in the number)
+(gdb) 
+56		cmp bl,11		;comparing with 11 if more than subtract
+(gdb) 
+57		jge sub1		;if condition is not satisfied jump to sub1
+(gdb) 
+97	sub1:	   sub bl,11  	;subtracting bl (t4) by 11
+(gdb) 
+98		   jmp sub1return  	;jump back to the same point in the loop
+(gdb) 
+59		add dl,bl		;add the sum with t4
+(gdb) 
+60		cmp dl,11		;compare if the sum is over 11 if yes than sub2
+(gdb) 
+61		jge sub2
+(gdb) 
+64		add esi, 1
+(gdb) 
+65		inc cl			;incrementing the for loop (cl)
+(gdb) 
+66		cmp cl,10		;condition for the loop 
+(gdb) 
+67		jb loop 		;jump back to the loop 
+(gdb) 
+
+Breakpoint 5, loop () at proj1.asm:53
+53		mov al,[esi]		;moving buffer to a register
+(gdb) info registes
+Undefined info command: "registes".  Try "help info".
+(gdb) info registes[Krs
+eax            0x8	8
+ecx            0x8	8
+edx            0xa	10
+ebx            0x3	3
+esp            0xffffd340	0xffffd340
+ebp            0x0	0x0
+esi            0x8049194	134517140
+edi            0x0	0
+eip            0x80480bc	0x80480bc <loop>
+eflags         0x293	[ CF AF SF IF ]
+cs             0x23	35
+ss             0x2b	43
+ds             0x2b	43
+es             0x2b	43
+fs             0x0	0
+gs             0x0	0
+(gdb) step
+54		sub al,'0'		;changing the asscii cahracter to an int
+(gdb) 
+55		add bl,al		;adding t4 and al(certain int in the number)
+(gdb) 
+56		cmp bl,11		;comparing with 11 if more than subtract
+(gdb) 
+57		jge sub1		;if condition is not satisfied jump to sub1
+(gdb) 
+97	sub1:	   sub bl,11  	;subtracting bl (t4) by 11
+(gdb) 
+98		   jmp sub1return  	;jump back to the same point in the loop
+(gdb) 
+59		add dl,bl		;add the sum with t4
+(gdb) 
+60		cmp dl,11		;compare if the sum is over 11 if yes than sub2
+(gdb) 
+61		jge sub2
+(gdb) 
+100	sub2:	   sub dl,11  	;subtracting 11 by the sum
+(gdb) 
+101		   jmp sub2return  	;jumoing back    
+(gdb) 
+64		add esi, 1
+(gdb) 
+65		inc cl			;incrementing the for loop (cl)
+(gdb) 
+66		cmp cl,10		;condition for the loop 
+(gdb) 
+67		jb loop 		;jump back to the loop 
+(gdb) 
+
+Breakpoint 5, loop () at proj1.asm:53
+53		mov al,[esi]		;moving buffer to a register
+(gdb) info registers
+eax            0x9	9
+ecx            0x9	9
+edx            0x0	0
+ebx            0x1	1
+esp            0xffffd340	0xffffd340
+ebp            0x0	0x0
+esi            0x8049195	134517141
+edi            0x0	0
+eip            0x80480bc	0x80480bc <loop>
+eflags         0x297	[ CF PF AF SF IF ]
+cs             0x23	35
+ss             0x2b	43
+ds             0x2b	43
+es             0x2b	43
+fs             0x0	0
+gs             0x0	0
+(gdb) e[Kstep
+54		sub al,'0'		;changing the asscii cahracter to an int
+(gdb) 
+55		add bl,al		;adding t4 and al(certain int in the number)
+(gdb) 
+56		cmp bl,11		;comparing with 11 if more than subtract
+(gdb) 
+57		jge sub1		;if condition is not satisfied jump to sub1
+(gdb) 
+59		add dl,bl		;add the sum with t4
+(gdb) 
+60		cmp dl,11		;compare if the sum is over 11 if yes than sub2
+(gdb) 
+61		jge sub2
+(gdb) 
+64		add esi, 1
+(gdb) 
+65		inc cl			;incrementing the for loop (cl)
+(gdb) 
+66		cmp cl,10		;condition for the loop 
+(gdb) 
+67		jb loop 		;jump back to the loop 
+(gdb) 
+69		cmp dl,0		;compare if mod 11 is 0
+(gdb) 
+70		je  yesISBN	;if it is 0 jump to this method
+(gdb) 
+71		cmp dl,0
+(gdb) 
+72		jne noISBN
+(gdb) 
+82		 mov eax,4	;always 4, register 1
+(gdb) 
+83		 mov ebx,1	;always 1, register 2
+(gdb) 
+84		 mov ecx,msg3	;register 3 message output
+(gdb) 
+85		 mov edx,len3	;length of message
+(gdb) 
+86		 int 080h	;sending it to kernel 
+(gdb) info registers
+eax            0x4	4
+ecx            0x8049169	134517097
+edx            0x20	32
+ebx            0x1	1
+esp            0xffffd340	0xffffd340
+ebp            0x0	0x0
+esi            0x8049196	134517142
+edi            0x0	0
+eip            0x8048114	0x8048114 <noISBN+20>
+eflags         0x202	[ IF ]
+cs             0x23	35
+ss             0x2b	43
+ds             0x2b	43
+es             0x2b	43
+fs             0x0	0
+gs             0x0	0
+(gdb) step
+This is NOT a valid ISBN number
+87		 jmp exit
+(gdb) 
+91	exit:	mov eax, 1 		;exit function
+(gdb) 
+92		mov ebx, 0 		;exit code, 0 = normal
+(gdb) 
+93		int 080h
+(gdb) info registes[Krs
+eax            0x1	1
+ecx            0x8049169	134517097
+edx            0x20	32
+ebx            0x0	0
+esp            0xffffd340	0xffffd340
+ebp            0x0	0x0
+esi            0x8049196	134517142
+edi            0x0	0
+eip            0x8048125	0x8048125 <exit+10>
+eflags         0x202	[ IF ]
+cs             0x23	35
+ss             0x2b	43
+ds             0x2b	43
+es             0x2b	43
+fs             0x0	0
+gs             0x0	0
+(gdb) step
+
+Program exited normally.
+(gdb) quit
+linux2[4]% exit
+exit
+
+Script done on Mon 22 Sep 2014 07:51:10 PM EDT

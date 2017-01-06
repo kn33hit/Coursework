@@ -1,0 +1,3 @@
+cd BASH 
+
+ls -l 

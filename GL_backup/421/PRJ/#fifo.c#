@@ -1,0 +1,35 @@
+// gcc fifo.c -o fifo 
+#include<stdio.h>
+
+typedef struct Node {
+  
+
+} ;
+long enqueue(const void *data, long len){
+  
+}
+
+long dequeue(const void *data, long len){
+}
+
+long peekLen(){
+}
+
+long queueLen(){
+}
+
+long clearQueue(){
+}
+
+main()
+{
+  void * data;
+  long length; 
+  printf("Hello World\n");
+  long en, de, peek, len, clear;
+  en = enqueue(data, length);
+  de = enqueue(data, length);
+  peek = peekLen();
+  len = queueLen();
+  clear = clearQueue(); 
+}

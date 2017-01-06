@@ -1,0 +1,4 @@
+select instructor.name 
+from instructor,student, advisor  
+where instructor.id = advisor.i_id and advisor.s_id = student.id and instructor.dept_name = 'Comp. Sci.' and student.dept_name = 'Comp. Sci.'
+

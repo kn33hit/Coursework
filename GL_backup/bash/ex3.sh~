@@ -1,0 +1,5 @@
+cd BASH 
+
+ls -l 
+echo $1
+    

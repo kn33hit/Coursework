@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form method="POST">
+     <div id="dynamicInput">
+          Entry 1<br><input type="text" name="myInputs[]">
+     </div>
+</form>
+<p>Click the button to display the date.</p>
+<button onclick="add()">Add</button>
+<button onclick="display()">Display</button>
+
+<script>
+var array1 = ["Saab", "Volvo", "BMW"];
+
+function display() {   
+for (i = 0; i < array1.length; i++) {
+      document.write(array1[i]);
+      document.write('<br/>');
+   }
+}
+
+function add(){
+     
+}
+
+
+</script>
+
+<p id="demo"></p>
+
+</body>
+</html> 

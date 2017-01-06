@@ -1,0 +1,40 @@
+IntArray(int size, int defaultVal=0);
+    Contains 2 errors and 1 edge case.
+~IntArray();
+    Contains 1 edge case.
+bool operator==(const IntArray &other) const;
+    Contains 1 error and 1 edge case.
+bool operator!=(const IntArray &other) const;
+    Contains 1 error and 1 edge case.
+void operator+=(const IntArray &other);
+    Contains 1 edge case.
+const IntArray operator+(const IntArray &other) const;
+    Contains 2 edge cases.
+int operator[](unsigned int index) const;
+    Contains 1 error.
+int Get(int index) const;
+    Contains 2 errors.
+void SetItem(int index, int newValue);
+    Contains 2 errors.
+void Insert(int index, int element);
+    Contains 3 errors. 
+void Del(int index);
+    Contains 3 errors.
+void Remove(int element);
+    Contains 2 errors.
+void Clear();
+    Contains 1 edge case.
+bool Contains(int element) const;
+    Contains 1 error.
+bool Contains(int element, int count) const;
+    Contains 3 errors.
+unsigned int IndexOf(int element) const;
+    Contains 2 errors.
+void AddToAll(int n);
+    Contains 1 error.
+void Scale(int n);
+    Contains 1 error.
+void Sum(const IntArray &other);
+    Contains 3 errors.
+void Product(const IntArray &other);
+    Contains 3 errors.

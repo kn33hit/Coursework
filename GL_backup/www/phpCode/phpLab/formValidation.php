@@ -1,0 +1,11 @@
+<?php 
+$license = $auditNumber = $social = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $license = test_input($_POST["driver"]);
+  $auditNumber = test_input($_POST["audit"]);
+  $social = test_input($_POST["ss"]);
+  
+}
+echo $license . $auditNumber . $social;
+
+?>

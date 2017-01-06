@@ -1,0 +1,123 @@
+R-TYPE
+_____________________________
+* (sll?) $rd = $rt << sh
+    IR = IMem[PC]; NPC = PC+4; A=reg[rs]; B= IMM; 
+    X = A<<B; reg[rd] = X; PC = NPC
+
+add $rd = $rs + $rt
+    IR = IMem[PC]; NPC = PC+4; A=reg[rs]; B=reg[rt]; X = A+B; 
+    reg[rd] = X; PC = NPC
+
+addu $rd = $rs + $rt
+    IR = IMem[PC]; NPC = PC+4; A=reg[rs]; B=reg[rt]; X = A+B;
+    reg[rd] = X; PC = NPC     
+
+sub $rd = $rs - $rt
+    IR = IMem[PC]; NPC = PC+4; A=reg[rs]; B=reg[rt]; X = A+B; 
+    reg[rd] = X; PC = NPC
+
+subu $rd = $rs - $rt
+    IR = IMem[PC]; NPC = PC+4; A=reg[rs]; B=reg[rt]; X = A+B;
+    reg[rd] = X; PC = NPC
+
+and $rd = $rs & $rt
+    IR = IMem[PC]; NPC = PC+4; A=reg[rs]; B=reg[rt]; X = A+B; 
+    reg[rd] = X; PC = NPC
+
+
+or $rd = $rs | $rt
+   IR = IMem[PC]; NPC = PC+4; A=reg[rs]; B=reg[rt]; X = A | B; 
+   reg[rd] = X; PC = NPC
+
+
+xor $rd = $rs ^ $rt
+    IR = IMem[PC]; NPC = PC+4; A=reg[rs]; B=reg[rt]; X = A ^ B; 
+    reg[rd] = X; PC = NPC
+
+
+nor $rd = !($rs | $rt)
+    IR = IMem[PC]; NPC = PC+4; A=reg[rs]; B=reg[rt]; X = A | B; 
+    reg[rd] = !X; PC = NPC
+
+
+_____________________________
+I-TYPE
+
+beq if $rs==$rt PC=imm; else PC+=4
+    IR = IMem[PC]; NPC = PC+4; A=reg[rs]; B=reg[rt]; X = A-B; 
+    PC = (X==0)? BOffset : NPC
+
+bne if $rs!=$rt PC=imm; else PC+=4
+    IR = IMem[PC]; NPC = PC+4; A=reg[rs]; B=reg[rt]; X = A-B; 
+    PC = (X!=0)? BOffset : NPC
+
+blez if $rs<=0 PC=imm; else PC+=4
+     IR = IMem[PC]; NPC = PC+4; A=reg[rs]; B=reg[0]; X = A+0; 
+     PC = (X<=0)? BOffset : NPC
+
+bgtz if $rs>0 PC=imm; else PC+=4
+     IR = IMem[PC]; NPC = PC+4; A=reg[rs]; B=reg[0]; X = A+0; 
+     PC = (X>0)? BOffset : NPC
+
+addi $rt = $rs + imm
+     IR = IMem[PC]; NPC = PC+4; A=reg[rs]; B=IMM; 
+     X = A+B; reg[rt] = X; PC = NPC
+
+addiu $rt = $rs + imm
+     IR = IMem[PC]; NPC = PC+4; A=reg[rs]; B=IMM;
+     X = A+B; reg[rt] = X; PC = NPC
+
+andi $rt = $rs & imm
+     IR = IMem[PC]; NPC = PC+4; A=reg[rs]; B=IMM; 
+     X = A & B; reg[rd] = X; PC = NPC
+
+ori $rt = $rs | imm
+    IR = IMem[PC]; NPC = PC+4; A=reg[rs]; B= IMM; 
+    X = A | B; reg[rd] = X; PC = NPC
+
+xori $rt = $rs ^ imm
+     IR = IMem[PC]; NPC = PC+4; A=reg[rs]; B = IMM; 
+     X = A ^ B; reg[rd] = X; PC = NPC
+
+lui $rt = (imm << 16)
+   IR = IMem[PC]; NPC = PC+4; B = IMM << 16;
+   reg[rt] = B ; PC = NPC;
+
+lw $rt = MEM[$rs + offset]
+   IR = IMem[PC]; NPC = PC+4; B = reg[rs] + Offset;
+   reg[rt] = DMEM[B] ; PC = NPC;
+
+sw MEM[$rs + offset] = $rt
+   IR = IMem[PC]; NPC = PC+4; A = reg[rt]; B = reg[rs] + Offset; 
+   DMEM[B] = A; PC = NPC;
+
+______________________________
+J-TYPE
+
+j
+  PC = JTarget;
+
+jal 
+  $31 = PC + 8; PC = JTarget;
+
+______________________________
+C-TYPE
+spd RobInst[ROUT] = $rd + imm
+    IR = IMem[PC]; NPC = PC+4; A = reg[rd]; B = IMM;
+    X = A + B; RobInst[ROUT] = X; PC = NPC;
+
+rot RobInst[ROUT] = $rd + imm
+    IR = IMem[PC]; NPC = PC+4; A = reg[rd]; B = IMM;
+    X = A + B; RobInst[ROUT] = X; PC = NPC;
+
+ascn RobInst[ROUT] = const(A); $rd = RobInst[RIN]
+    IR = IMem[PC]; NPC = PC+4; X = IR; RobInst[ROUT] = X; 
+    reg[rd] = RobInst[RIN]; PC = NPC;
+
+dscn $rd RobInst[ROUT] = const(D); $rd = RobInst[RIN]
+    IR = IMem[PC]; NPC = PC+4; X = IR; RobInst[ROUT] = X;
+    reg[rd] = RobInst[RIN]; PC = NPC;
+
+fir RobInst[ROUT] = $rd + imm
+    IR = IMem[PC]; NPC = PC+4; A = reg[rd]; B = signExtend(imm);
+    X = A + B; RobInst[ROUT] = X; PC = NPC;

@@ -1,0 +1,1 @@
+source /afs/umbc.edu/common/etc/oracle2.cshrc

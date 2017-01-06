@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<p id="demo"></p>
+
+<script>
+var countries = ["Australia","Germany", "United States of America"];
+document.getElementById("demo").innerHTML = countries[0];
+var max = "";
+for (i = 0; i < countries.length; i++) { 
+    if(countries[i].length > max.length){
+       max = countries[i];
+    }
+}
+document.getElementById("demo").innerHTML = max;
+
+</script>
+
+</body>
+</html>

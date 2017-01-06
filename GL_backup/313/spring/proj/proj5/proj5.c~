@@ -1,0 +1,87 @@
+#include "proj5.h"
+
+void init_heap(){
+  int i,j;
+  char empty = " ";
+
+  head = 0;
+  
+  for(i = 0; i < 20;i++){
+    strncpy(memory[i].title, empty, sizeof(empty) - 1);
+    strncpy(memory[i].author, empty, sizeof(empty) - 1);
+    memory[i].year_published = i + 1;
+  }
+  memory[19].year_published = 4294967295;
+}
+
+book_info *new_book_info(){
+  book_info *send;
+  findHead();
+  if( head == -1){
+    printf("Sorry the memory is full\n");
+    exit(0);
+  }
+  send = &memory[head]; 
+  if(send == NULL){
+    return send;
+  }
+}
+
+void findHead(){
+  int i;
+  for( i = 0;  i < 20; i ++){
+    if(memory[i].year_published < 21){
+      head = i;
+      return;
+    }
+  }
+  head = -1;
+}
+void del_book_info(book_info *book){
+  int i;
+  char empty = " ";
+ 
+  for( i = 0; i < 20; i++){
+    if(strcmp(book->title, memory[i].title) != 1){
+      printf("MATCH TITLE %d\n",i);
+      if(strcmp(book->author, memory[i].author) != 1){
+	printf("MATCH AUTHOR %D\n", i);
+	if(book->year_published == memory[i].year_published){
+	  printf("EQUALS\n");
+	  printf("sent in: \n");
+	  printf("%s\n", book->title);
+	  printf("%s\n", book->author);
+	  printf("%d\n", book->year_published);
+	  printf("in memory\n");
+	  printf("%s\n", memory[i].title);
+	  printf("%s\n", memory[i].author);
+	  printf("%d\n", memory[i].year_published);
+
+	  strncpy(memory[i].title, empty, sizeof(empty) - 1);
+	  strncpy(memory[i].author, empty, sizeof(empty) - 1);
+	  memory[i].year_published = i + 1;	
+	}
+      }
+    }
+  }
+  findHead();
+ }
+
+void dump_heap(){
+  printf("*** BEGIN HEAP DUMP ***\n");
+  
+  printf("Head = %d\n", head);
+  int i;
+  int p = 1;
+  for( i = 0; i < 20;i++){
+    printf("%d: " , i);
+    printf( "%d, ",memory[i].year_published);
+    printf( "%s, ", memory[i].title); 
+    printf("%s", memory[i].author);
+    printf("\n");
+  }
+
+  printf("*** END HEAP DUMP ***\n");
+
+}
+

@@ -1,0 +1,8 @@
+Database HW2 readme
+
+- For question 3: I'v forgotten to show 
+  "Each employee has one direct department supervisor."
+  This would basically be shown in the employee entity. 
+  it would be a recursive realtion of the employee with itself. 
+  Showing one employee is a supervisor for another. 
+- Assumptions are written in the scans of the pdf. 

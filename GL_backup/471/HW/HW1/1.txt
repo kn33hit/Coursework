@@ -1,0 +1,34 @@
+PART I
+User: Hello.
+Cleverbot: Hello.
+User: How are you doing today?
+Cleverbot: Good you?
+User: I'm okay. I injured myself earlier today, so I'm kind of sad about that.
+Cleverbot: Understandable. Thursday.
+User: But todat is Monday.
+Cleverbot: No, today is Sunday. Remember, you were going to church.
+User: NO. Today is labor day, meaning a monday!
+Cleverbot: I think today is sunday.
+User: What time zone are you in?
+Cleverbot: Pacific time zone.
+User: What is the time right now with date and time.
+Cleverbot: The time right now is just a moment in an endless stream. A wheel, of sorts
+User: What is the date today>.
+Cleverbot: Today is the 30th of September 2013.
+User: Oh boy looks like someone needs to update you.
+Cleverbot: But DNA is similar to binary code.
+User: Yeah some of that binary data is off a little bit.
+Cleverbot: Well I hope that some are at least interesting...
+User: Alright then. Tell me somethig interesting about you.
+ Cleverbot: My brother's best friend lives 7 houses away.
+User: Who is your brother?
+Cleverbot: My brother's name is Sam and he is a paramedic.
+User: Oh wow and what do you do?
+Cleverbot: Really? That's so interesting! Tell me about your brother who was born a girl!
+User: Can we start over.
+—————————————————————————————————————————————
+1. i) I expected the clever bot to be more straight forward and updated. However, I felt like I was talking to a goof ball who has not been updated for 2 years. 
+ii) The amount go time it takes to respond back. Sometimes it took the 10 seconds for it to decide when I asked for the simplest of things. And sometimes it responded back in half a second on a more complicated statement. 
+2. i) It can be more annoying than I thought, and IT IS NOT UP-TO-DATE. I asked the date ad it said it was like September 2013. 
+ii) It likes insulting people as a a scrip to change the topic because it couldn’t understand what the user was really asking. Its annoying but a nifty little touch to overcome unrecognizable responses from the user. 
+3. That’s a tough question. There are many variable that come into play: What kind of character is being tested, Are we just talking about the intelligence or a character of a person. There are many more things that can be brought up, but if just asked vaguely that if I would pass the bot as a person, then yes I would pass the bot as a person. But I would only give a ‘C.’ So, as they say that C’s get degrees, but not jobs. 

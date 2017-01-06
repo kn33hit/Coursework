@@ -1,0 +1,4 @@
+select section.building, sum(capacity)
+from classroom, section 
+where classroom.building = section.building 
+

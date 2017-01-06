@@ -1,0 +1,173 @@
+"midterm" by Neh Patel, Joseph Peterson, Jin Hui Xu, Nicholas Harman
+
+[--- ACTIONS ---]
+
+[‘Ponder’ action carries out a response to whatever was pondered]
+Pondering is an action applying to one topic. Understand "ponder [text]" as Pondering.
+Carry out pondering:
+   say "Nobody knows.";
+
+[‘Inhale’ action carries out a response that smoke has been inhaled when implemented]
+Inhaling is an action applying to one topic. Understand "inhale fumes" as Inhaling.
+Carry out inhaling:
+      say "You feel woozy.";
+
+[--- BEGIN STORY ---]
+
+[Setting of story takes place within a mansion - player starts in basement]
+When play begins:
+     say "[italic type]You wake up in a daze on the basement floor of a dimly lit mansion. The other night was quite the rager. Feeling somewhat hungover, you start to come to your senses...[roman type]".
+
+[--- BASEMENT and ITEMS---]
+
+The Basement is a room. "You notice a closed door where you see a light appearing from out of its crevices. As you look around, you start spying different objects that are there. You think to yourself."
+
+[This object is also used as a way to lose the game, by adding anything else except this item in the cauldron, it ends the game”]
+A Ginger is here. It is edible. "There is some ginger on the ground (not a person...a spice). It smells funny."
+
+[next two items leads to some clues to play the game]
+A Helmet is here. "'Hey look, a helmet!' Judging by the looks of it, I would say it's a bicycle helmet."
+
+A Prism is here. "'Wtf is this?' I think my science teacher told me this a prism."
+
+[--- SUN ROOM ---]
+
+[‘Door’ is the same as ‘doorway’]
+[the door connects the basement and the sun room]
+The doorway is east of basement and west of the Sun Room. The doorway is a door. Understand "door" as doorway.
+
+Sun Room is a room. "'Who the fuck designed this house? Why is there a Sun Room in the fucking basement?' You are now in a random Sun Room. There is another room up above you. You can also see the door leading to the basement."
+
+[The edelweiss is a flower]
+[can be used later for some help]
+An EDELWEISS is here. Understand "flower" as EDELWEISS. "'Cool flower, I've never seen it before.' You see an edelweiss flower, it is flammable."
+
+[--- CAVE ROOM and BAT CAVE ---]
+
+A room called Cave Room is above the Sun Room. "'Holy Crap! Is that Batman's Cave?!?!' You make out a dark cave in the room that is enterable. You look down and you see the Sun Room. To the north of you is a peculiar room."
+
+[‘Bat cave’ is an enterable container, not a room, filled with items]
+An enterable container called the Bat Cave is in the Cave Room. It is fixed in place.  The description is "The cave looks pretty dark. I should 420 blaze a fire if I go in there. Is that Batman?" Understand "exit cave", "exit the cave", "exit bat cave", "leave cave", "leave the cave", or "get out of cave"as exiting.
+
+[Use the after rule to prevent the objects to be displayed in the room description]
+After printing the name of the Bat Cave:
+   omit contents in listing.
+   
+[Use the instead rule to prevent the objects to be displayed if players try to examine outside of the cave]
+Instead of examining the bat cave:   
+	say "[description of the bat cave][line break]".
+
+[next two objects offer clues for future reference in the game, if something is done with them]
+A Statue is in the Bat Cave. "Not Batman himself, but a Batman statue is here. I'm not sure how to fuck with this?"
+
+Pickle is a man in the Bat Cave.  Pickle is either asleep or awake. Pickle is asleep. "Some dude named Pickle is also here, but he is sleeping. He won't wake up easy."
+
+A container called fire is in the Bat Cave. Fire is unlit. "You see an unlit fire, you should light it up before doing any other things"
+
+[extra game interactions]
+Instead of burning the fire:
+ 	say "The fire starts to burn, you should wait a couple seconds.";
+
+After waiting for the first time:
+      say "Maybe you should wait one more second";
+ 
+[Do something different on second wait] 
+After waiting for the second time:	
+      say "You are very patient, but the fire seems can't burn without some fuel. A flower may be a good option.";
+ 
+[the flower that, if picked up from the sun room can be used here]
+Instead of inserting something into the fire:
+	if EDELWEISS is the noun:
+   	   say "The fire is turning now, and the cave becomes brighter, you can see a sentence on the wall: 'Attach your helmet to the batman statue!'";
+	otherwise:
+		say " It doesn't help!!"
+
+[helmet, an object picked up in the basement, can be used here. Also pickle can only be showed something if you’ve attached the helmet to the statue]
+Instead of tying something to statue:
+ 	if helmet is the noun:
+  	   say "The cave starts to shake, and Pickle woke up. 'Did you wake me up? I will   not help you unless you get what I want!!' He said.";
+  	   now pickle is awake;
+	otherwise:
+		say "Nothing happened."
+
+[showing pickle a prism, which was picked up in the basement, would give you the password to the knight]
+Instead of showing something to pickle when pickle is asleep:
+ 	say "He can't see it since he is sleeping. You need to do something to wake him up";
+ 
+Instead of showing something to pickle when pickle is awake:
+	if prism is the noun:
+	   say "'Oh I always wanted to see a stupid ass prism. Thanks in return, I would like to tell you something useful for your pointless journey. Remember to use this phrase 'XYZZY', when asked for it. Or shit is gonna get chiddy chiddy bang bang out there. Now fuck off.' He said";
+   	otherwise:
+		say "He said, 'I don't want to see this stupid thing!! FUCK OFF!!'";
+
+[--- SECRET ROOM ---]
+A room called Secret Room is north of the Cave Room. "[If the knight is awake]There appears to be a guard here blocking the entrance to a room east of you. FML![end if] The cave room is behind you.”
+
+Knight is a man in Secret Room. The knight is either asleep or awake. The knight is awake.  "The knight looks stiff and scary."
+
+[have to use the password, which you can only know if you’ve talked to pickle]
+Instead of going east from the Secret Room when the knight is awake:
+	say "The knight steps in front of you as you approach the gate. 'PAASSWAAAARD!!' it bellows."
+
+[Must tell knight password in order to pass, otherwise cannot pass the knight]
+Instead of answering the knight that some text:
+	if the topic understood matches "XYZZY":
+	   say "The knight lets you pass and he falls asleep.";
+	   now the knight is asleep;
+	otherwise:
+		say "'WRONG PASSWAAARD!' roars the knight. 'FUCK OFF!'"
+
+
+[--- TRIAL ROOM ---]
+
+A room called Trial Room is east of the Secret Room. "A sign in the room says 'Eat the Duck! Or it will eat you!' You can see a promising room due north. It appears you must do as the sign says in order to move on. The secret room is due west."
+
+[this is another object like the ginger which is used an option to end the game.
+If the player does not eat it, and tries to pass to the next room, he dies]
+A duck is here. The duck is either dead or alive. The duck is alive. It is edible. "A duck, that might look tasty if your name was Bear Grylls, is here."
+
+Instead of eating the duck:
+ 	say "The duck was delish";
+	now the duck is dead;
+
+Instead of going north from Trial Room when duck is alive:
+	end the story saying "Duck ate you.";
+
+[--- KITCHEN ---]
+
+A room called Kitchen is north of the Trial Room. "The kitchen looks old and somewhat dreary, probably because there is no woman here. The trial room is behind you."
+
+[used to end game. if the player puts anything but a ginger in it. The game ends]
+A openable container called a Cauldron is here. Cauldron is closed.  Understand "fire" as Cauldron. "An old-fashioned Cauldron is here. And it appears to be cooking some sort of concoction. I probably shouldn’t mess with it."
+
+Instead of inserting something into the cauldron when cauldron is closed:
+ 	say " You need to open the cauldron first".
+
+[Check what the user puts into the cauldron]
+Instead of inserting something into the cauldron when cauldron is open:
+	if the noun is ginger:
+	   say "The cauldron begins to boil.";
+	otherwise:
+		end the story saying "[The noun] caused the cauldron to explode!";
+
+Instead of burning the cauldron:
+	say "The fire blazing around the cauldron. The room is filled with the fumes from it.";
+
+[final guy to talk to, to help you win the game]
+Macbeth is a man in Kitchen. Understand "bitch" as Macbeth. "A man named Macbeth is here. He likes Shakespeare. Watta bitch!"
+
+Instead of answering the Macbeth that some text:
+	say "'... The secret is in the mirror ...'";
+
+[Create a dirty mirror.  Polishing the mirror and examining wins the game]
+A Mirror is here.  The mirror is either polished or dirty. "A dirty mirror is here. It needs polishing before I examine it."
+
+Instead of rubbing the mirror:
+	say "Mirror is clean, I wonder what you will see next.";
+	now the mirror is polished;
+
+Instead of examining the mirror:
+	if the mirror is polished:
+	   end the story saying "You win because narcissism!";
+	otherwise:
+		say "I can not see clearly.";

@@ -1,0 +1,181 @@
+	;; File: proj2.asm
+	;; Reverse Polish Notation calculator
+	;;  nasm -f elf -g -F stabs proj2.asm
+	;; gcc -m32 -g -o proj2 proj2.o
+
+%define STDIN 0
+%define STDOUT 1
+%define SYSCALL_EXIT 1
+%define SYSCALL_READ 3
+%define SYSCALL_WRITE 4
+%define BUFLEN 256
+
+
+	SECTION .data		;intializing data
+
+msg1:	 db "Expression to calculate: " ;user prompt
+len1:	 equ $-msg1			;length of msg1
+
+number:	 db "5000",0
+	
+print_str:		db "Result: %d", 10, 0
+	
+	SECTION .bss 			;unintialized data
+
+temp:	resb 8
+buf:	resb BUFLEN 			;buffer for read
+rlen:	 resb 4
+
+	SECTION .text			;code section
+extern printf				;Request excess to printf
+extern atoi				;Request excess to atoi
+	
+	global main
+
+main:	 nop
+start:
+	;;  user prompt
+	mov 	eax, SYSCALL_WRITE 		;write
+	mov 	ebx, STDOUT 		;file descriptor
+	mov 	ecx, msg1 			;addr message
+	mov 	edx, len1 			;lenght of message
+	int 	080h			;kernel call
+
+	;; reading input
+	mov 	eax, SYSCALL_READ		;read
+	mov 	ebx, STDIN			;file descriptor
+	mov 	ecx, buf			;address to buf
+	mov 	edx, BUFLEN			;buf lenght
+	int 	080h			;kernel call
+
+	mov 	[rlen], eax
+
+	call 	clearAll
+	jmp 	initial
+clearAll:	
+	xor 	eax, eax
+	xor 	ebx, ebx
+	xor 	ecx, ecx
+	xor 	edx, edx
+	xor 	esi, esi
+	xor 	edi, edi
+	ret
+	
+initial:	
+	mov 	ecx, [rlen]
+	mov 	esi, buf
+;;; ;   the next part till top is for pushing in the first value
+;;; ;   this is for negative value
+	mov     ax, [esi]
+	mov     ah, 0
+	cmp     ax, 45
+	je      subtraction
+;;; ;  this is to push in the positive value
+	push    ecx
+	push    esi
+	call    atoi
+	add     esp, 4
+	pop     ecx
+	push    eax
+	
+top:
+	mov 	ax, [esi]	; have to make sure ax is changed always
+	mov 	ah, 0
+ 	jmp  	space
+good:	
+	mov 	ax,[esi]
+	mov 	ah,0
+	cmp     ax, 43          ;addition
+	je      addition
+	cmp     ax, 45  ;subtraction
+	je      subtraction
+	cmp     ax, 42  ;multiplication
+	je      multiplication
+	cmp     ax, 47  ;division
+	je      division
+	cmp     ax, 10  ;new line ascii
+	je      done
+
+	push 	ecx
+	push    esi
+	call    atoi
+	add     esp, 4
+	pop 	ecx
+	push    eax
+
+cond:	
+	inc 	esi
+	dec 	ecx
+	jnz 	top 
+	jmp 	done
+	
+space:
+	cmp 	ax, 32
+	je 	isSpace
+	jmp 	cond
+
+isSpace:	
+	inc 	esi
+	dec	ecx
+	jmp  	good
+				;space jmp 
+	
+addition:
+	pop 	eax
+	pop 	edx
+	add 	eax, edx
+	push 	eax
+	jmp 	cond 
+
+	
+subtraction:
+	inc 	esi
+	dec 	ecx 
+	mov 	dl, [esi]
+	cmp 	dl, 32
+	je 	subSpace
+	push 	ecx
+	push    esi
+	call    atoi
+	add     esp, 4
+	NEG	eax
+	pop	ecx
+	push 	eax     
+	jmp 	cond
+	
+multiplication:
+	pop    	eax
+	pop     edx
+	IMUL    eax, edx		
+	push    eax
+	
+	jmp 	cond
+	
+division:
+	pop     ebx
+	pop     eax
+	IDIV    ebx
+	push    eax
+	
+	jmp 	cond 
+
+subSpace:
+
+	pop     eax
+	pop     edx
+	sub     edx, eax
+	push    edx	
+	jmp 	cond
+
+	
+done:
+	push 	print_str  			; defined in the .data section
+	call 	printf
+	add 	esp, 8  		; pop the Msg and number off the stack
+	pop 	eax     		; restore the value in eax that we 
+
+	;; exit call
+exit:
+	mov eax, SYSCALL_EXIT		;exit function 
+	mov ebx,0			;exti code, 0 = normal
+	int 080h			;kernel call

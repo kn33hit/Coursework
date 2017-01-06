@@ -1,0 +1,92 @@
+The route from 1 to 8: 
+8 -> 6 -> 2
+Total Distance: 14
+------------------------------------------------------------
+Routing table of node 1
+ To         Next Hop            Distance
+ 2             2                   3
+ 3             4                   9
+ 4             4                   5
+ 5             2                   11
+ 6             2                   13
+ 7             4                   7
+ 8             2                   14
+
+
+Routing table of node 2
+ To         Next Hop            Distance
+ 1             0                   3
+ 3             4                   6
+ 4             4                   11
+ 5             2                   8
+ 6             2                   2
+ 7             4                   15
+ 8             2                   8
+
+
+Routing table of node 3
+ To         Next Hop            Distance
+ 1             0                   6
+ 2             2                   6
+ 4             4                   1
+ 5             2                   14
+ 6             2                   8
+ 7             4                   3
+ 8             2                   10
+
+
+Routing table of node 4
+ To         Next Hop            Distance
+ 1             0                   5
+ 2             2                   7
+ 3             4                   1
+ 5             2                   13
+ 6             2                   5
+ 7             4                   2
+ 8             2                   9
+
+
+Routing table of node 5
+ To         Next Hop            Distance
+ 1             0                   11
+ 2             2                   8
+ 3             4                   14
+ 4             4                   19
+ 6             2                   10
+ 7             4                   21
+ 8             2                   4
+
+
+Routing table of node 6
+ To         Next Hop            Distance
+ 1             0                   5
+ 2             2                   2
+ 3             4                   4
+ 4             4                   5
+ 5             2                   10
+ 7             4                   7
+ 8             2                   6
+
+
+Routing table of node 7
+ To         Next Hop            Distance
+ 1             0                   7
+ 2             2                   9
+ 3             4                   3
+ 4             4                   2
+ 5             2                   11
+ 6             2                   7
+ 8             2                   7
+
+
+Routing table of node 8
+ To         Next Hop            Distance
+ 1             0                   14
+ 2             2                   16
+ 3             4                   10
+ 4             4                   9
+ 5             2                   4
+ 6             2                   6
+ 7             4                   7
+
+

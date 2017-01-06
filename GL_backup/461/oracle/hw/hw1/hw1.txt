@@ -1,0 +1,23 @@
+Neh Patel 
+Homework 1 
+
+1) π dept_name ( σ max(salary) (instructor) )
+
+2) (4,8) x (3,1,7) = {(4,3),(4,1),(4,7),(8,3),(8,1),(8,7)}
+
+3) select name, course
+   from instructor 
+   where salary > 79,000 
+   order by dept_name, name 
+
+4) select name, course_id
+   from instructor 
+   inner join teaches 
+   on instructor.ID = teaches.ID 
+   order by name 
+
+5) select name, year, student.id
+   from student, takes
+   where student.ID = takes.ID
+   having year > 2009
+   group by name, year, student.id

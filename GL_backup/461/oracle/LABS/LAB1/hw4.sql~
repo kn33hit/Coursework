@@ -1,0 +1,3 @@
+select name, ID 
+from instructor 
+order by name

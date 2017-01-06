@@ -1,0 +1,6 @@
+     Alice: 144.13 - A
+       Bob: 157.53 - A
+   Charlie: 132.83 - A
+      Lisa: 176.74 - A
+
+Class Average: 152.81

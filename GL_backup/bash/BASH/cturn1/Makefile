@@ -1,0 +1,2 @@
+Proj2.out: Proj2.cpp Hand.cpp Hand.h Player.cpp Player.h Deck.cpp Deck.h Card.cpp Card.h Blackjack.cpp Blackjack.h 
+	g++ -Wall Proj2.cpp Player.cpp Player.h Deck.cpp Deck.h Hand.cpp Hand.h Card.cpp Card.h Blackjack.cpp Blackjack.h -o Proj2.out

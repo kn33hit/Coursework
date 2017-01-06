@@ -1,1 +1,0 @@
-/usr/bin/scl enable python33 bash

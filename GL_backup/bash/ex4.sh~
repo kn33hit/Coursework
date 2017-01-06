@@ -1,6 +1,0 @@
-cd BASH 
-name="a150"
-until [cd $name]; do
-    echo $name
-    cd ..
-done 

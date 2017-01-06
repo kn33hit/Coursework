@@ -1,5 +1,0 @@
-cd BASH 
-str="@umbc.edu"
-arry=cat usernames.txt
-cat usernames.txt >> results.txt >> $str
-
